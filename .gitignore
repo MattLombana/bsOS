@@ -1,4 +1,4 @@
-./bin/*
-!./bin/isodir/boot/grub/
-!./bin/obj
+bin/
+!bin/isodir/boot/grub/
+!bin/obj
 
