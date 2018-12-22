@@ -1,0 +1,4 @@
+./bin/*
+!./bin/isodir/boot/grub/
+!./bin/obj
+
