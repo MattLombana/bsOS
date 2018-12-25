@@ -1,6 +1,6 @@
-#include "tty.h"
 #include <stdint.h>
 #include <string.h>
+#include <kernel/tty.h>
 
 #define DEFAULT_FG COLOR_WHITE
 #define DEFAULT_BG COLOR_BLACK

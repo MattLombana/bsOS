@@ -1,12 +1,16 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-#include "paging.h"
-#include "tty.h"
-#include "rand.h"
+#include <kernel/paging.h>
+#include <kernel/tty.h>
+#include <kernel/rand.h>
 
 
-
+/* Temporary delay function.
+ *
+ * Note: This is a very bad function, as it ties up the CPU while delaying. It is only in place
+ * while we do not have multithreading or clock tick support
+ */
 void delay(int t) {
     volatile int i,j;
     for (i = 0; i < t; i++) {

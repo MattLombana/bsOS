@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <kernel/paging.h>
 
 extern void _loadPageDirectory(uint32_t*);
 extern void _enablePaging();

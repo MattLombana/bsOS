@@ -1,7 +1,7 @@
-#include "rand.h"
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <kernel/rand.h>
 
 #define RAND_MAX 32767
 unsigned long next = 1;
