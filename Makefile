@@ -1,57 +1,36 @@
-SOURCE = kernel screen rand string paging
-ASM    = boot paging rand
-_OBJ    =					\
-		boot.asm.o			\
-		paging.asm.o		\
-		rand.asm.o			\
-		kernel.o			\
-		screen.o			\
-		rand.o				\
-		string.o			\
-		paging.o
-
-
-#####################################################################################################
-#                                                                                                   #
-#                              Everything below here can safely be ignored                          #
-#                                                                                                   #
-#####################################################################################################
-CC     = i686-elf-gcc
-AC     = nasm
-LINKER = linker.ld
-AFLAGS = -felf32
-CFLAGS = -std=gnu99 -ffreestanding -Wall -Wextra -c
-LFLAGS = -ffreestanding -nostdlib -lgcc
-
-TARGET = ./bin/isodir/boot/bsOS.bin
-ISO    = ./bin/bsOS.iso
-ISODIR = ./bin/isodir
-ODIR   = ./bin/obj
-OBJ    = $(patsubst %,$(ODIR)/%,$(_OBJ))
-
-# The target that is built when you run `make` with no arguments:
+.PHONY: all clean libc kernel binary iso install-headers help
 default: all
 
 
-# Create object files for the assembly
-$(ODIR)/%.asm.o: %.asm
-	$(AC) $(AFLAGS) $< -o $@
+help:
+	@printf "Custom bsOS Makefile Targets:\n"
+	@printf "make                 : Install headers, build libk, and the kernel\n"
+	@printf "make install-headers : Install headers into bin/include/ \n"
+	@printf "make libc            : Install libc headers and build libk.a \n"
+	@printf "make kernel          : Install kernel headers and build the kernel object files\n"
+	@printf "make binary          : Build the kernel binary \n"
+	@printf "make iso             : Build an iso image from the kernel \n"
+	@printf "make clean           : Run Make clean for both the libc and kernel directory\n"
+	@printf "make help            : Display this help message\n"
 
-# Create object files for the C code
-$(ODIR)/%.o: %.c
-	$(CC) $(CFLAGS) $< -o $@
+all: libc kernel
 
+install-headers:
+	$(MAKE) -C kernel install-headers
+	$(MAKE) -C libc install-headers
 
-# Make all files described in TARGET
-all: $(OBJ)
-	$(CC) $(LFLAGS) -T $(LINKER) -o $(TARGET) $^
-	grub-mkrescue -o $(ISO) $(ISODIR)
+libc:
+	$(MAKE) -C libc
 
+kernel:
+	$(MAKE) -C kernel
 
-# running `make clean` will remove all files ignored by git
+binary: kernel
+	$(MAKE) -C kernel binary
+
+iso: $(BINARY)
+	$(MAKE) -C kernel iso
+
 clean:
-	rm -f $(OBJ) $(TARGET) $(ISO)
-
-
-.SUFFIXES:
-.PHONY: default all clean
+	$(MAKE) -C libc clean
+	$(MAKE) -C kernel clean
