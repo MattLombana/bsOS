@@ -1,6 +1,4 @@
-#include "screen.h"
-#include <stdbool.h>
-#include <stddef.h>
+#include "tty.h"
 #include <stdint.h>
 #include "string.h"
 

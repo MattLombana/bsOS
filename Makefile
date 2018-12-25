@@ -1,12 +1,14 @@
-SOURCE = kernel screen rand string
-ASM    = boot rand
+SOURCE = kernel screen rand string paging
+ASM    = boot paging rand
 _OBJ    =					\
 		boot.asm.o			\
+		paging.asm.o		\
 		rand.asm.o			\
 		kernel.o			\
 		screen.o			\
 		rand.o				\
-		string.o
+		string.o			\
+		paging.o
 
 
 #####################################################################################################

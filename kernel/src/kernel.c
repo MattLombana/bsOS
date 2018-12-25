@@ -1,8 +1,8 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-#include "screen.h"
-#include "string.h"
+#include "paging.h"
+#include "tty.h"
 #include "rand.h"
 
 
@@ -19,6 +19,7 @@ void delay(int t) {
 
 
 void kernel_main() {
+    setup_paging();
     terminal_initialize();
     rand_initialize();
 
