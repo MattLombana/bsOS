@@ -43,14 +43,14 @@ default: all
 
 help:
 	@printf "Custom bsOS/libc/ Makefile Targets:\n"
-	@printf "make                 : Install headers, build libk\n"
+	@printf "make                 : Build libk\n"
 	@printf "make install-headers : Install headers into bin/include/ \n"
 	@printf "make libk.a          : Create the static libk.a library in bin/lib/\n"
 	@printf "make clean           : Run Make clean to remove the libk.a and object files from compilation\n"
 	@printf "make help            : Display this help message\n"
 
 
-all: install-headers $(LIBS)
+all: $(LIBS)
 
 install-headers:
 	mkdir -p $(INCLUDEDIR)

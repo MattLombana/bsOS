@@ -49,7 +49,7 @@ default: all
 
 help:
 	@printf "Custom bsOS/kernel/ Makefile Targets:\n"
-	@printf "make                 : Install headers, build the kernel object files\n"
+	@printf "make                 : Build the kernel, binary, and ISO\n"
 	@printf "make install-headers : Install headers into bin/include/ \n"
 	@printf "make kernel          : Build the kernel object files in bin/obj/ \n"
 	@printf "make binary          : Build the binary and save it as bin/isodir/boot/bsOS.bin \n"
@@ -57,7 +57,7 @@ help:
 	@printf "make clean           : Run Make clean to remove the libk.a and object files from compilation\n"
 	@printf "make help            : Display this help message\n"
 
-all: install-headers kernel
+all: kernel binary iso
 
 install-headers:
 	mkdir -p $(INCLUDEDIR)

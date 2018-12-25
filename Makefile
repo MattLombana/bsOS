@@ -4,7 +4,7 @@ default: all
 
 help:
 	@printf "Custom bsOS Makefile Targets:\n"
-	@printf "make                 : Install headers, build libk, and the kernel\n"
+	@printf "make                 : Install build libk and the kernel, and create the resulting iso\n"
 	@printf "make install-headers : Install headers into bin/include/ \n"
 	@printf "make libc            : Install libc headers and build libk.a \n"
 	@printf "make kernel          : Install kernel headers and build the kernel object files\n"
@@ -13,7 +13,7 @@ help:
 	@printf "make clean           : Run Make clean for both the libc and kernel directory\n"
 	@printf "make help            : Display this help message\n"
 
-all: libc kernel
+all: libc iso
 
 install-headers:
 	$(MAKE) -C kernel install-headers
