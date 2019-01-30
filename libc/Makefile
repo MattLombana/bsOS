@@ -1,9 +1,12 @@
 TARGETS =					\
 		  string/memcmp 	\
-		  string/memcpy	\
+		  string/memcpy		\
 		  string/memmove	\
 		  string/memset 	\
-		  string/strlen
+		  string/strlen		\
+		  stdio/printf		\
+		  stdio/putchar 	\
+		  stdio/puts 		\
 
 LIBS = 				\
 	   libk.a		\

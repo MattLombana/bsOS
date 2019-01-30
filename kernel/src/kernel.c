@@ -4,6 +4,7 @@
 #include <kernel/paging.h>
 #include <kernel/tty.h>
 #include <kernel/rand.h>
+#include <stdio.h>
 
 
 /* Temporary delay function.
@@ -28,10 +29,9 @@ void kernel_main() {
     rand_initialize();
 
     delay(200);
-    terminal_write_string("This is a test");
+    printf("This is a test");
+    printf("%s", rand());
     for (;;) {
-        terminal_write_int(rand());
-        terminal_write_string(" ");
         delay(100);
     }
 }
